@@ -89,12 +89,12 @@ public abstract class BeefGuiSmallMachineBase extends BeefGuiBase {
 	}
 	
 	protected void updateInventoryExposures() {
-		BlockBRSmallMachine smallMachineBlock = (BlockBRSmallMachine)BigReactors.blockSmallMachine;
-		for(ForgeDirection dir : ForgeDirection.values()) {
-			if(dir == ForgeDirection.UNKNOWN || dir == ForgeDirection.NORTH) { continue; }
-			int rotatedSide = _entity.getRotatedSide(dir.ordinal());
-			
-			exposureButtons[dir.ordinal()].setIcon( smallMachineBlock.getIconFromTileEntity(_entity, BlockBRSmallMachine.META_CYANITE_REPROCESSOR, rotatedSide) );
-		}
+//		BlockBRSmallMachine smallMachineBlock = (BlockBRSmallMachine)BigReactors.blockSmallMachine;
+//		for(ForgeDirection dir : ForgeDirection.values()) {
+//			if(dir == ForgeDirection.UNKNOWN || dir == ForgeDirection.NORTH) { continue; }
+//			int rotatedSide = _entity.getRotatedSide(dir.ordinal());
+//			
+//			exposureButtons[dir.ordinal()].setIcon( smallMachineBlock.getIconFromTileEntity(_entity, BlockBRSmallMachine.META_CYANITE_REPROCESSOR, rotatedSide) );
+//		}
 	}
 }

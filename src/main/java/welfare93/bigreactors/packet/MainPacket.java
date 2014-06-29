@@ -1,7 +1,16 @@
 package welfare93.bigreactors.packet;
 
+import io.netty.buffer.ByteBuf;
+import io.netty.buffer.ByteBufInputStream;
+import io.netty.channel.ChannelHandlerContext;
+
+import java.io.DataInputStream;
 import java.io.IOException;
 
+import net.minecraft.entity.player.EntityPlayer;
+import net.minecraft.nbt.CompressedStreamTools;
+import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.util.ForgeDirection;
 import erogenousbeef.bigreactors.common.multiblock.MultiblockReactor;
 import erogenousbeef.bigreactors.common.multiblock.interfaces.IMultiblockNetworkHandler;
 import erogenousbeef.bigreactors.common.multiblock.tileentity.TileEntityReactorControlRod;
@@ -13,23 +22,19 @@ import erogenousbeef.bigreactors.common.tileentity.base.TileEntityInventory;
 import erogenousbeef.bigreactors.common.tileentity.base.TileEntityPoweredInventoryFluid;
 import erogenousbeef.bigreactors.gui.IBeefGuiEntity;
 import erogenousbeef.bigreactors.net.Packets;
-import io.netty.buffer.ByteBuf;
-import io.netty.channel.ChannelHandlerContext;
-import net.minecraft.entity.player.EntityPlayer;
-import net.minecraft.nbt.NBTTagCompound;
-import net.minecraft.network.Packet;
-import net.minecraft.tileentity.TileEntity;
-import net.minecraftforge.common.util.ForgeDirection;
 
 public class MainPacket extends AbstractPacket {
-	public MainPacket()
-	{}
+	
+	public MainPacket() {}
+	
 	public MainPacket(int id,int x,int y,int z,ByteBuf value)
 	{
 		this.x=x; this.y=y; this.z=z; this.value=value;this.id=id;
 	}
+	
 	ByteBuf value;
 	int x,y,z,id;
+	
 	@Override
 	public void handleServerSide(EntityPlayer player) {
 		TileEntity te = ((EntityPlayer)player).worldObj.getTileEntity(x, y, z);
@@ -88,9 +93,11 @@ public class MainPacket extends AbstractPacket {
 			}break;
 		case Packets.SmallMachineUIUpdate:
 			if(te != null && te instanceof TileEntityBeefBase) {
-				//NBTTagCompound tagCompound = NBTTagCompound(value);
-				//((TileEntityBeefBase)te).onReceiveUpdate(tagCompound); 
-				//TODO:WTF?
+				try {
+					((TileEntityBeefBase)te).onReceiveUpdate(CompressedStreamTools.readCompressed(new ByteBufInputStream(value.readBytes(value.readShort()))));
+				} catch (IOException e) {
+					e.printStackTrace();
+				}
 		}break;
 		case Packets.SmallMachineRotationUpdate:
 			if(te instanceof TileEntityBeefBase) {

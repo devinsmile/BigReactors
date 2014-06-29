@@ -88,7 +88,7 @@ public abstract class TileEntityPoweredInventoryFluid extends
 	
 	// Internal Helpers
 	
-	private void readFluidsFromNBT(NBTTagCompound tag) {
+	/*private void readFluidsFromNBT(NBTTagCompound tag) {
 		// Initialize tanks to empty, as we send sparse updates.
 		for(int i = 0; i < tanks.length; i++) {
 			tanks[i].setFluid(null);
@@ -112,7 +112,7 @@ public abstract class TileEntityPoweredInventoryFluid extends
 				int exposureIdx = exposureTag.getInteger("exposureIdx");
 				tankExposure[exposureIdx] = exposureTag.getInteger("direction");
 			}
-		}		
+		}
 	}
 	
 	private void writeFluidsToNBT(NBTTagCompound tag) {
@@ -143,32 +143,32 @@ public abstract class TileEntityPoweredInventoryFluid extends
 		if(exposureTagList.tagCount() > 0) {
 			tag.setTag("fluidExposures", exposureTagList);
 		}
-	}
+	}*/
 	
 	// TileEntity overrides
 	@Override
 	public void readFromNBT(NBTTagCompound tag) {
 		super.readFromNBT(tag);
-		readFluidsFromNBT(tag);
+		tanks[0].readFromNBT(tag);
 	}
 	
 	@Override
 	public void writeToNBT(NBTTagCompound tag) {
 		super.writeToNBT(tag);
-		writeFluidsToNBT(tag);
+		tanks[0].writeToNBT(tag);
 	}
 	
 	// TileEntityBeefBase
 	@Override
 	protected void onSendUpdate(NBTTagCompound updateTag) {
 		super.onSendUpdate(updateTag);
-		writeFluidsToNBT(updateTag);
+		tanks[0].writeToNBT(updateTag);
 	}
 	
 	@Override
 	public void onReceiveUpdate(NBTTagCompound updateTag) {
 		super.onReceiveUpdate(updateTag);
-		readFluidsFromNBT(updateTag);
+		tanks[0].readFromNBT(updateTag);
 	}
 
 	// Networked GUI

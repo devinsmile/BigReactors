@@ -1,14 +1,13 @@
 package erogenousbeef.bigreactors.common.tileentity;
 
-import io.netty.buffer.ByteBuf;
-
 import java.util.ArrayList;
 
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
-import net.minecraft.tileentity.TileEntity;
+import net.minecraft.nbt.NBTTagCompound;
+import net.minecraft.util.StatCollector;
 import net.minecraftforge.common.util.ForgeDirection;
 import net.minecraftforge.fluids.Fluid;
 import net.minecraftforge.fluids.FluidContainerRegistry;
@@ -17,7 +16,6 @@ import net.minecraftforge.fluids.FluidStack;
 import net.minecraftforge.oredict.OreDictionary;
 import cpw.mods.fml.relauncher.Side;
 import cpw.mods.fml.relauncher.SideOnly;
-import erogenousbeef.bigreactors.api.IReactorFuel;
 import erogenousbeef.bigreactors.client.gui.GuiCyaniteReprocessor;
 import erogenousbeef.bigreactors.common.BRRegistry;
 import erogenousbeef.bigreactors.common.tileentity.base.TileEntityPoweredInventoryFluid;
@@ -159,5 +157,10 @@ public class TileEntityCyaniteReprocessor extends TileEntityPoweredInventoryFlui
 			return 0;
 		else
 			return FLUIDTANK_NONE;
+	}
+	
+	@Override
+	public String getInventoryName() {
+		return "Cyanite Reprocessor";
 	}
 }

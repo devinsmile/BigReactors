@@ -13,6 +13,8 @@ import erogenousbeef.bigreactors.gui.controls.BeefGuiProgressArrow;
 
 public class GuiCyaniteReprocessor extends BeefGuiSmallMachineBase {
 
+	private BeefGuiLabel inventoryLabel;
+	
 	private GuiButton _togglePort;
 	private TileEntityCyaniteReprocessor _entity;
 
@@ -26,7 +28,6 @@ public class GuiCyaniteReprocessor extends BeefGuiSmallMachineBase {
 		super(container, entity);
 		
 		_entity = entity;
-		xSize = 245;
 		ySize = 175;
 	}
 	
@@ -43,13 +44,15 @@ public class GuiCyaniteReprocessor extends BeefGuiSmallMachineBase {
 		fluidBar = new BeefGuiFluidBar(this, guiLeft + 8, guiTop + 16, _entity, 0);
 		powerBar = new BeefGuiPowerBar(this, guiLeft + 148, guiTop + 16, _entity);
 		progressArrow = new BeefGuiProgressArrow(this, guiLeft + 76, guiTop + 41, 0, 178, _entity);
+		inventoryLabel = new BeefGuiLabel(this, "Inventory", guiLeft + 8, guiTop + 83);
 		
 		registerControl(titleString);
 		registerControl(powerBar);
 		registerControl(fluidBar);
 		registerControl(progressArrow);
+		registerControl(inventoryLabel);
 
-		createInventoryExposureButtons(guiLeft + 180, guiTop + 4);
+		//createInventoryExposureButtons(guiLeft + 180, guiTop + 4);
 	}
 
 	@Override

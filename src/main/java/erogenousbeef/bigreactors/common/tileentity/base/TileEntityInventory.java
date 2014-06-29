@@ -53,7 +53,7 @@ public abstract class TileEntityInventory extends TileEntityBeefBase implements 
 		// Inventories
 		_inventories = new ItemStack[getSizeInventory()];
 		if(tag.hasKey("Items")) {
-			NBTTagList tagList = tag.getTagList("Items",1);
+			NBTTagList tagList = tag.getTagList("Items",10);
 			for(int i = 0; i < tagList.tagCount(); i++) {
 				NBTTagCompound itemTag = (NBTTagCompound)tagList.getCompoundTagAt(i);
 				int slot = itemTag.getByte("Slot") & 0xff;
