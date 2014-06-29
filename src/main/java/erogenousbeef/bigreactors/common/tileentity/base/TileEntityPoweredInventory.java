@@ -1,15 +1,18 @@
 package erogenousbeef.bigreactors.common.tileentity.base;
 
+import ic2.api.energy.event.EnergyTileLoadEvent;
+import ic2.api.energy.event.EnergyTileUnloadEvent;
 import io.netty.buffer.ByteBuf;
-import welfare93.bigreactors.energy.EnergyStorage;
-import welfare93.bigreactors.energy.IEnergyHandlerInput;
 import net.minecraft.client.gui.GuiScreen;
 import net.minecraft.entity.player.EntityPlayer;
 import net.minecraft.inventory.Container;
 import net.minecraft.item.ItemStack;
 import net.minecraft.nbt.NBTTagCompound;
 import net.minecraft.tileentity.TileEntity;
+import net.minecraftforge.common.MinecraftForge;
 import net.minecraftforge.common.util.ForgeDirection;
+import welfare93.bigreactors.energy.EnergyStorage;
+import welfare93.bigreactors.energy.IEnergyHandlerInput;
 
 public abstract class TileEntityPoweredInventory extends TileEntityInventory implements IEnergyHandlerInput {
 	public static float energyPerRF = 1f;
@@ -175,6 +178,7 @@ public abstract class TileEntityPoweredInventory extends TileEntityInventory imp
 	@Override
 	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
 		// TODO Auto-generated method stub
+		//DEBUG System.out.println(this.getEnergyStored(forwardFace));
 		return energyStorage.receiveEnergy(amount,true);
 	}
 
@@ -206,7 +210,6 @@ public abstract class TileEntityPoweredInventory extends TileEntityInventory imp
 	@Override
 	public void closeInventory() {
 		// TODO Auto-generated method stub
-		
 	}
 
 	
@@ -252,4 +255,20 @@ public abstract class TileEntityPoweredInventory extends TileEntityInventory imp
 		return false;
 	}
 
+	@Override
+	public int getSinkTier() {
+		return 2; //IC2 MV Tier
+	}
+	
+	@Override
+	public void validate() {
+		super.validate();
+		if (!this.worldObj.isRemote) MinecraftForge.EVENT_BUS.post(new EnergyTileLoadEvent(this));
+	}
+	
+	@Override
+	public void invalidate() {
+		super.invalidate();
+		if (!this.worldObj.isRemote) MinecraftForge.EVENT_BUS.post(new EnergyTileUnloadEvent(this));
+	}
 }

@@ -160,36 +160,4 @@ public class TileEntityCyaniteReprocessor extends TileEntityPoweredInventoryFlui
 		else
 			return FLUIDTANK_NONE;
 	}
-
-	@Override
-	public int addEnergy(int energy) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int removeEnergy(int energy) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double getDemandedEnergy() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public int getSinkTier() {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
-	@Override
-	public double injectEnergy(ForgeDirection directionFrom, double amount,
-			double voltage) {
-		// TODO Auto-generated method stub
-		return 0;
-	}
-
 }
