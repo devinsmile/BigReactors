@@ -26,7 +26,7 @@ import cpw.mods.fml.common.eventhandler.SubscribeEvent;
 import erogenousbeef.core.multiblock.MultiblockEventHandler;
 
 
-@Mod(modid = BRLoader.MOD_ID, name = BigReactors.NAME, version = BRConfig.VERSION)
+@Mod(modid = BRLoader.MOD_ID, name = BigReactors.NAME, version = BRConfig.VERSION, dependencies = "required-after:IC2@[2.2.489,)")
 
 public class BRLoader {
 
