@@ -173,4 +173,23 @@ public class TileEntityCyaniteReprocessor extends TileEntityPoweredInventoryFlui
 		return 0;
 	}
 
+	@Override
+	public double getDemandedEnergy() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public int getSinkTier() {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
+	@Override
+	public double injectEnergy(ForgeDirection directionFrom, double amount,
+			double voltage) {
+		// TODO Auto-generated method stub
+		return 0;
+	}
+
 }

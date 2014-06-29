@@ -168,20 +168,14 @@ public abstract class TileEntityPoweredInventory extends TileEntityInventory imp
 	}
 
 	@Override
-	public double demandedEnergyUnits() {
+	public double getDemandedEnergy() {
 		return energyStorage.getMaxEnergyStored()-energyStorage.getEnergyStored();
 	}
 
 	@Override
-	public double injectEnergyUnits(ForgeDirection directionFrom, double amount) {
+	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
 		// TODO Auto-generated method stub
 		return energyStorage.receiveEnergy(amount,true);
-	}
-
-	@Override
-	public int getMaxSafeInput() {
-		// TODO Auto-generated method stub
-		return Integer.MAX_VALUE;
 	}
 
 	@Override

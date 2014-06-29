@@ -1398,23 +1398,15 @@ public class MultiblockReactor extends RectangularMultiblockControllerBase imple
 	}
 
 	@Override
-	public double demandedEnergyUnits() {
-		// TODO Auto-generated method stub
-		
+	public double getDemandedEnergy() {
 		return Math.floor(this.maxEnergyStored - this.energyStored);
 	}
 
 	@Override
-	public double injectEnergyUnits(ForgeDirection directionFrom, double amount) {
+	public double injectEnergy(ForgeDirection directionFrom, double amount, double voltage) {
 		int amtReceived = (int)Math.min(amount, Math.floor(this.maxEnergyStored - this.energyStored));
 			this.addStoredEnergy(amtReceived);
 		return amtReceived;
-	}
-
-	@Override
-	public int getMaxSafeInput() {
-		// TODO Auto-generated method stub
-		return Integer.MAX_VALUE;
 	}
 
 	@Override
@@ -1441,5 +1433,10 @@ public class MultiblockReactor extends RectangularMultiblockControllerBase imple
 		}
 		energyStored-=energy;
 		return energy;
+	}
+
+	@Override
+	public int getSinkTier() {
+		return 3; //HV IC2 Tier
 	}
 }

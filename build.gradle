@@ -17,12 +17,12 @@ buildscript {
 
 apply plugin: 'forge'
 
-version = "0.3.3F"
+version = "0.3.3G"
 group= "erogenousbeef.bigreactors" // http://maven.apache.org/guides/mini/guide-naming-conventions.html
 archivesBaseName = "BigReactors"
 
 minecraft {
-    version = "1.7.2-10.12.1.1098"
+    version = "1.7.10-10.13.0.1152"
 
 replace "@VERSION@", project.version
 replaceIn "BRConfig.java"
@@ -30,7 +30,7 @@ replaceIn "BRConfig.java"
 
 dependencies {
     compile files("../libs/buildcraft-6.0.15-api.jar")
-    compile files("../libs/industrialcraft-2-2.1.477-experimental-api.jar")  
+    compile files("../libs/industrialcraft-2-2.2.489-experimental-api.jar")  
     compile files("../libs/OpenComputers-MC1.7.2-1.2.12.144-api.jar")
 }
 processResources

@@ -148,4 +148,8 @@ public class TileEntityTurbinePowerTap extends TileEntityTurbinePartStandard imp
 		return getTurbine().removeEnergy(energy);
 	}
 
+	@Override
+	public int getSourceTier() {
+		return 3; //IC2 HV Tier
+	}
 }

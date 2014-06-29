@@ -1153,4 +1153,9 @@ public class MultiblockTurbine extends RectangularMultiblockControllerBase imple
 		energyStored-=energy;
 		return energy;
 	}
+
+	@Override
+	public int getSourceTier() {
+		return 3; //HV IC2 Tier
+	}
 }
